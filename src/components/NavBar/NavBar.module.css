@@ -1,0 +1,21 @@
+.container {
+  margin: auto;
+  max-width: fit-content;
+  overflow: auto;
+  padding: 0 20px;
+}
+.navbar {
+  background-color: #333;
+  color: white;
+  overflow: auto;
+}
+.list {
+  list-style: none;
+  text-align: center;
+}
+.anchor {
+  text-decoration: none;
+  color: white;
+  font-size: large;
+  font-weight: bolder;
+}

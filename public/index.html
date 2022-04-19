@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="./corona2.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="Coronavirus tracking" />
+
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+  <title>CBIT covid tracker</title>
+</head>
+<br>
+<body>
+<style>
+a.two:link {color:#ff0000;}
+a.two:visited {color:#0000ff;}
+a.two:hover {font-size:150%;}
+</style>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://timesofindia.indiatimes.com/india/coronavirus-live-updates-oct-28/liveblog/87320839.cms"
+  target="_blank">Latest News</a>
+&nbsp;
+<a href="https://ourworldindata.org/covid-vaccinations?country=OWID_WRL" target="_blank">Vaccination Progress</a>
+&nbsp;
+<a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019/advice-for-public" target="_blank">Covid Safety and preventive measures</a>
+<br><br>
+<div id="root"></div>
+</body>
+&nbsp;
+&nbsp;
+<br>
+<br>
+<br><br><br><br>
+<html>
+
+<body>
+  <div id="main">
+    <!-- open main div -->
+    <div id="header">
+      <!-- open header div -->
+    </div><!-- close header div -->
+    <form id="form1">
+
+      <h3>Do you have any of the following symptoms?</h3>
+      <label for="q1"><input type="checkbox" name="q1" value="cold" id="q1" />cold and cough</label>
+      <label for="q1"><input type="checkbox" name="q1" value="st" id="q1" />sore throat</label>
+      <label for="q1"><input type="checkbox" name="q1" value="Lts" id="q1" />Loss of taste/smell</label>
+      <label for="q1"><input type="checkbox" name="q1" value="Dib" id="q1" />Difficulty in Breathing</label>
+      <label for="q1"><input type="checkbox" name="q1" value="Cg" id="q1" />Chest congestion/runny nose</label>
+      <label for="q1"><input type="checkbox" name="q1" value="BA" id="q1" />Body ache</label>
+      <label for="q1"><input type="checkbox" name="q1" value="NA" id="q1" />None of the above</label>
+
+      <h3>Do you have any pre-existing conditions?</h3>
+      <label for="q2"><input type="checkbox" name="q2" value="Hd" id="q2" />Heart disease</label>
+      <label for="q2"><input type="checkbox" name="q2" value="Ht" id="q2" />Hypertension</label>
+      <label for="q2"><input type="checkbox" name="q2" value="Ld" id="q2" />Lung disease</label>
+      <label for="q2"><input type="checkbox" name="q2" value="kd" id="q2" />Kidney Disorder</label>
+      <label for="q2"><input type="checkbox" name="q2" value="A" id="q2" />Asthma</label>
+      <label for="q2"><input type="checkbox" name="q2" value="Not" id="q2" />None of these</label>
+
+      <h3>Have you travelled in the past 14 days?</h3>
+      <label for="q3"><input type="radio" name="q3" value="Y" id="q3" />Yes</label>
+      <label for="q3"><input type="radio" name="q3" value="N" id="q3" />No</label>
+
+
+
+      <input onclick="Result()" name="submit" type="button" value="Submit" style="width:150px" />
+    </form>
+  </div><!-- close main div -->
+</body>
+<style>
+  body {
+    background-color: rgb(184, 202, 209);
+    font-family: Helvetica;
+  }
+
+  #main {
+    width: 80%;
+    max-width: 950px;
+    border: 1px gray solid;
+    margin: auto;
+    padding: 10px;
+    background-color: rgb(137, 154, 161);
+    border-radius: 10px;
+  }
+
+  #header {
+    margin-top: 10;
+    margin: auto;
+    border: 2px solid black;
+    padding: 5px;
+    height: 400px;
+    width: 800px;
+    background: beige;
+    background-image: url("https://www.inside.iastate.edu/media/2020/08/D3KK.jpg");
+    color: white;
+  }
+
+  label {
+    display: block;
+  }
+
+  input {
+    width: 30px;
+    margin-left: 20px;
+  }
+
+  h2 {
+    clear: both;
+    padding-top: 20px;
+  }
+
+  button {
+    width: 100px;
+    margin-top: 20px;
+  }
+</style>
+
+</html>
+
+<br>
+<script>
+  function Result() {
+    //variables with global implications
+    var totalQuestions = 3;
+    var correctAnswers = 0;
+    var alertText;
+    var i;
+
+
+    var a1 = document.getElementsByName('q1');
+    var a1answers = new Array();
+    var a1right = new Array("NA");
+    var a1bool = true;
+
+    for (i = 0; i < a1.length; i++) {
+      if (a1[i].checked) {
+        a1answers.push(a1[i].value);
+      }
+    }
+    a1answers.sort();
+    a1right.sort();
+    if (a1answers.length == a1right.length) {
+      for (i = 0; i < a1answers.length; i++) {
+        if (a1answers[i] != a1right[i]) {
+          a1bool = false;
+          break;
+        }
+      }
+    }
+    else {
+      a1bool = false;
+    }
+    if (a1bool == true) {
+      correctAnswers++;
+    }
+
+
+
+    var a2 = document.getElementsByName('q2');
+    var a2answers = new Array();
+    var a2right = new Array("Not");
+    var a2bool = true;
+
+    for (i = 0; i < a2.length; i++) {
+      if (a2[i].checked) {
+        a2answers.push(a2[i].value);
+      }
+    }
+    a2answers.sort();
+    a2right.sort();
+    if (a2answers.length == a2right.length) {
+      for (i = 0; i < a2answers.length; i++) {
+        if (a2answers[i] != a2right[i]) {
+          a2bool = false;
+          break;
+        }
+      }
+    }
+    else {
+      a2bool = false;
+    }
+    if (a2bool == true) {
+      correctAnswers++;
+    }
+
+    var a3 = document.getElementsByName('q3');
+    for (i = 0; i < a3.length; i++) {
+      if (a3[i].checked) {
+        if (a3[i].value == 'N') {
+          correctAnswers++;
+          var a3bool = true;
+          break;
+        }
+        else {
+          a3bool = false;
+        }
+      }
+    }
+
+    if (a3bool == false) {
+      if (a1bool == false & a2bool == false) {
+        alertText = "You have a high risk of infection due to your pre-existng conditions. Please get yourself tested ASAP.";
+      }
+      if (a1bool == false & a2bool == true) {
+        alertText = "You might have symptoms of corona virus. Please get yourself tested ASAP.";
+      }
+      if (a1bool == true & a2bool == false) {
+        alertText = "You might be at risk of getting infected due to your pre-existing conditions.Please get yourself tested ASAP.";
+      }
+      else {
+        alertText = "Please get yourself tested as you have travelled in the past 14 days.";
+      }
+    }
+    if (a3bool == true) {
+      if (a1bool == false & a2bool == false) {
+        alertText = "You have a high risk of infection due to your pre-existng conditions. Please get yourself tested ASAP.";
+      }
+      if (a1bool == false & a2bool == true) {
+        alertText = "You might have symptoms of corona virus. Please get yourself tested ASAP.";
+      }
+      if (a1bool == true & a2bool == false) {
+        alertText = "You might be at risk of getting infected due to your pre-existing conditions.Please get yourself tested ASAP.";
+      }
+      else {
+        alertText = "Your risk of infection is low.";
+      }
+    }
+    alert(alertText);
+
+  }
+</script>
+<img src="./coronavirus-data-explorer.png" width="1500" height="1000" alt="Vaccinations in India">
+<br><br><br><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+
+
+<img src="./thumbnail_District_wise_covid_-x1280.webp"  alt="India @ Vaccination">
+</html>
